@@ -1,0 +1,108 @@
+<ion-header>
+  <ion-toolbar color="primary" class="header-toolbar">
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="close()" class="close-button">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="header-title">{{ isEditMode ? 'Edit Item' : 'Add New Item' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="form-container">
+  <form (ngSubmit)="save()" class="item-form">
+    <div class="form-section">
+      <div class="section-header">
+        <ion-icon name="pricetag-outline" class="section-icon"></ion-icon>
+        <h3 class="section-title">Basic Information</h3>
+      </div>
+      
+      <ion-item class="form-item" lines="none">
+        <ion-label position="stacked" class="input-label">Item Name</ion-label>
+        <ion-input [(ngModel)]="item.ItemName" name="itemName" required class="custom-input"></ion-input>
+      </ion-item>
+
+      <ion-item class="form-item" lines="none">
+        <ion-label position="stacked" class="input-label">Category</ion-label>
+        <ion-input [(ngModel)]="item.Category" name="category" required class="custom-input"></ion-input>
+      </ion-item>
+    </div>
+
+    <div class="form-section">
+      <div class="section-header">
+        <ion-icon name="stats-chart-outline" class="section-icon"></ion-icon>
+        <h3 class="section-title">Inventory Details</h3>
+      </div>
+      
+      <div class="row-inputs">
+        <ion-item class="form-item half-width" lines="none">
+          <ion-label position="stacked" class="input-label">Quantity</ion-label>
+          <ion-input type="number" [(ngModel)]="item.Quantity" name="quantity" required class="custom-input"></ion-input>
+        </ion-item>
+
+        <ion-item class="form-item half-width" lines="none">
+          <ion-label position="stacked" class="input-label">Price</ion-label>
+          <ion-input type="number" [(ngModel)]="item.Price" name="price" required class="custom-input"></ion-input>
+        </ion-item>
+      </div>
+
+      <ion-item class="form-item" lines="none">
+        <ion-label position="stacked" class="input-label">Supplier</ion-label>
+        <ion-input [(ngModel)]="item.Supplier" name="supplier" required class="custom-input"></ion-input>
+      </ion-item>
+
+      <ion-item class="form-item" lines="none">
+        <ion-label position="stacked" class="input-label">Restock Date</ion-label>
+        <ion-datetime 
+          presentation="date" 
+          [(ngModel)]="item.RestockDate" 
+          name="restockDate" 
+          required
+          class="custom-datetime"
+        ></ion-datetime>
+      </ion-item>
+    </div>
+
+    <div class="form-section">
+      <div class="section-header">
+        <ion-icon name="image-outline" class="section-icon"></ion-icon>
+        <h3 class="section-title">Item Image</h3>
+      </div>
+      
+      <div class="image-upload-container">
+        <input 
+          type="file" 
+          id="fileInput" 
+          (change)="onImageSelected($event)" 
+          accept="image/*" 
+          class="file-input"
+        />
+        <label for="fileInput" class="upload-button">
+          <ion-icon name="cloud-upload-outline" class="upload-icon"></ion-icon>
+          <span>Choose an image</span>
+        </label>
+        
+        <div *ngIf="item.Image" class="image-preview-container">
+          <img [src]="item.Image" alt="Preview" class="image-preview" />
+          <ion-button fill="clear" color="danger" (click)="item.Image = ''" class="remove-image-btn">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+    </div>
+
+    <ion-button 
+      expand="block" 
+      type="submit" 
+      class="submit-button" 
+      color="primary"
+      [disabled]="!item.ItemName || !item.Category"
+    >
+      <ion-icon 
+        [name]="isEditMode ? 'save-outline' : 'add-circle-outline'" 
+        slot="start"
+      ></ion-icon>
+      {{ isEditMode ? 'Update Item' : 'Add Item' }}
+    </ion-button>
+  </form>
+</ion-content>
