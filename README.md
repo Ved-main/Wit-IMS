@@ -5,7 +5,9 @@ Video link:-https://drive.google.com/file/d/1PmtvFX96vBXuGjtVt6YME4hgnZEhMOQh/vi
 Inventory Management System
 
 
+
 A responsive, role-based inventory management system built using Ionic + Angular. Admin users can manage inventory items (add/edit/delete), upload images, and download inventory data as CSV. Regular users can view the dashboard with search functionality.
+
 
 
 ✨ Features
@@ -26,6 +28,7 @@ A responsive, role-based inventory management system built using Ionic + Angular
 🌙 Clean and modern UI theme
 
 
+
 Tech Stack
 ⚙️ Angular 17+
 
@@ -37,9 +40,11 @@ Tech Stack
 
 🛡️ JWT for authentication
 
+
 💻 Frontend Setup (Ionic Angular)
 npm install
 ionic serve
+
 
 
 🔙 Backend Setup
